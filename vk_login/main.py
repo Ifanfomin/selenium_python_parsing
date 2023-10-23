@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-from config import vk_email, vk_password
+from config import vk_email, vk_password, mozilla_profile_path, geckodriver_path
 
 
 class SeleniumVkParse(object):
@@ -10,9 +10,9 @@ class SeleniumVkParse(object):
 
     def create_driver(self):
         options = webdriver.FirefoxOptions()
-        service = webdriver.FirefoxService(executable_path="/snap/bin/firefox.geckodriver")
+        service = webdriver.FirefoxService(executable_path=geckodriver_path)
         options.set_preference("profile",
-                               "/home/ifan/snap/firefox/common/.mozilla/firefox/uw0658yz.profile_for_selenium")
+                               mozilla_profile_path)
 
         self.driver = webdriver.Firefox(options=options, service=service)
         self.login_vk()

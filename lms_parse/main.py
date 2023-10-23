@@ -2,16 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.select import Select
 from bs4 import BeautifulSoup as soup
-from config import lms_email, lms_password
+from config import lms_email, lms_password, mozilla_profile_path, geckodriver_path
 
 
 def main():
     ### create driver ###
     options = webdriver.FirefoxOptions()
     # options.add_argument("--headless")  # hide window
-    service = webdriver.FirefoxService(executable_path="/snap/bin/firefox.geckodriver")
+    service = webdriver.FirefoxService(executable_path=geckodriver_path)
     options.set_preference("profile",
-                           "/home/ifan/snap/firefox/common/.mozilla/firefox/uw0658yz.profile_for_selenium")
+                           mozilla_profile_path)
 
     driver = webdriver.Firefox(options=options, service=service)
 
